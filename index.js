@@ -1,6 +1,6 @@
-const { Client, Intents } = require('discord.js')
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { Client, GatewayIntentBits, Partials } = require('discord.js')
+const { REST } = require('discord.js');
+const { Routes } = require('discord-api-types/v10');
 const { getVoiceConnection } = require('@discordjs/voice');
 
 const config = require('./config.json')
@@ -9,10 +9,10 @@ const logger = require('./lib/utils/logger.js')
 const utils = require('./lib/utils/utils.js')
 
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES],
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates],
     allowedMentions: { parse: [] },
 });
-const rest = new REST({ version: '9' }).setToken(config.token);
+const rest = new REST({ version: '10' }).setToken(config.token);
 
 client.commands = new Map();
 const slashCommands = [];
